@@ -4,9 +4,11 @@ from .visual.editor import VisualEditor
 
 
 class MainWindow(QMainWindow):
-    def initialize(self):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
         self.setWindowTitle('PyStudio')
-        self.setCentralWidget(VisualEditor().initialize())
+        self.setCentralWidget(VisualEditor())
 
 
 if __name__ == '__main__':
@@ -15,7 +17,6 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
 
     win = MainWindow()
-    win.initialize()
     win.resize(960, 540)
     win.show()
 

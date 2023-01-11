@@ -1,30 +1,53 @@
 from PySide6.QtGui import QPalette
-from PySide6.QtWidgets import QFrame, QHBoxLayout, QScrollArea, QWidget
+from PySide6.QtWidgets import QFrame, QHeaderView, QScrollArea, QSplitter, QTreeWidget, QVBoxLayout, QWidget
 
 
 class VisualEditor(QWidget):
-    def initialize(self):
-        layout = QHBoxLayout(self)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
-        layout.addWidget(StructurePane().initialize())
+
+        splitter = QSplitter()
+        splitter.addWidget(StructurePane())
 
         scroll = QScrollArea()
         scroll.setFrameShape(QFrame.Shape.NoFrame)
         scroll.setBackgroundRole(QPalette.ColorRole.Dark)
-        layout.addWidget(scroll)
+        splitter.addWidget(scroll)
 
-        layout.addWidget(PropertiesPane().initialize())
+        splitter.addWidget(PropertiesPane())
+        splitter.setSizes([100, 300, 100])
 
-        return self
+        layout.addWidget(splitter)
 
 
 class StructurePane(QWidget):
-    def initialize(self):
-        self.setMinimumWidth(200)
-        return self
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+
+        tree = QTreeWidget()
+        tree.setMinimumWidth(100)
+        tree.setHeaderLabels(['Component', ''])
+        tree.header().setSectionsMovable(False)
+        tree.header().setSectionResizeMode(QHeaderView.ResizeMode.ResizeToContents)
+        layout.addWidget(tree)
 
 
 class PropertiesPane(QWidget):
-    def initialize(self):
-        self.setMinimumWidth(200)
-        return self
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+
+        tree = QTreeWidget()
+        tree.setMinimumWidth(100)
+        tree.setHeaderLabels(['Property', 'Value'])
+        tree.header().setSectionsMovable(False)
+        tree.header().setSectionResizeMode(QHeaderView.ResizeMode.ResizeToContents)
+        layout.addWidget(tree)
