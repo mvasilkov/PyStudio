@@ -6,7 +6,7 @@ from .visual.editor import VisualEditor
 class MainWindow(QMainWindow):
     def initialize(self):
         self.setWindowTitle('PyStudio')
-        self.setCentralWidget(VisualEditor())
+        self.setCentralWidget(VisualEditor().initialize())
 
 
 if __name__ == '__main__':
