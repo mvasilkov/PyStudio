@@ -1,4 +1,3 @@
-from PySide6.QtGui import QPalette
 from PySide6.QtWidgets import QFrame, QHeaderView, QScrollArea, QSplitter, QTreeWidget, QVBoxLayout, QWidget
 
 
@@ -14,7 +13,6 @@ class VisualEditor(QWidget):
 
         scroll = QScrollArea()
         scroll.setFrameShape(QFrame.Shape.NoFrame)
-        scroll.setBackgroundRole(QPalette.ColorRole.Dark)
         splitter.addWidget(scroll)
 
         splitter.addWidget(PropertiesPane())
@@ -32,7 +30,7 @@ class StructurePane(QWidget):
 
         tree = QTreeWidget()
         tree.setMinimumWidth(100)
-        tree.setHeaderLabels(['Component', ''])
+        tree.setHeaderLabels(['Component'])
         tree.header().setSectionsMovable(False)
         tree.header().setSectionResizeMode(QHeaderView.ResizeMode.ResizeToContents)
         layout.addWidget(tree)
