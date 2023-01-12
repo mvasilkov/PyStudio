@@ -1,5 +1,8 @@
 from PySide6.QtWidgets import QFrame, QHeaderView, QScrollArea, QSplitter, QTreeWidget, QVBoxLayout, QWidget
 
+from .builder import Builder
+from .poc.hello_dataclasses import hello
+
 
 class VisualEditor(QWidget):
     def __init__(self, *args, **kwargs):
@@ -14,6 +17,12 @@ class VisualEditor(QWidget):
         scroll = QScrollArea()
         scroll.setFrameShape(QFrame.Shape.NoFrame)
         splitter.addWidget(scroll)
+
+        # POC
+        builder = Builder()
+        widget = builder.build_widget(hello)
+        scroll.setWidget(widget)
+        widget.show()
 
         splitter.addWidget(PropertiesPane())
         splitter.setSizes([100, 300, 100])

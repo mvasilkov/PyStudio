@@ -1,6 +1,6 @@
 from .. import models
 
-component = models.QWidgetModel(
+hello = models.QWidgetModel(
     name='component',
     layout=models.QVBoxLayoutModel(
         name='vbox_layout',
@@ -18,11 +18,11 @@ component = models.QWidgetModel(
                 children=[
                     models.QBoxLayoutStretchModel(),
                     models.QPushButtonModel(
-                        name='push_button1',
+                        name='button1',
                         text='Qt for Python',
                     ),
                     models.QPushButtonModel(
-                        name='push_button2',
+                        name='button2',
                         text='PySide6',
                     ),
                 ],
